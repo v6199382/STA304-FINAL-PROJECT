@@ -1,0 +1,240 @@
+#cps19_income_cat
+# 1= none,  2= $1 to $30,000 , 3= $30,001 to $60,000, 4= $60,001 to $90,000, 5= $90,001 to $110,000, 6= $110,001 to $150,000, 7=$150,001 to $200,000, 8=More than $200,001  
+income_df <- ces[,c(167,251)]
+income_df[is.na(income_df)] = 0
+first_income_group <- sum(with(income_df,cps19_income_cat==1))
+second_income_group <- sum(with(income_df,cps19_income_cat==2))
+third_income_group <- sum(with(income_df,cps19_income_cat==3))
+fourth_income_group <- sum(with(income_df,cps19_income_cat==4))
+fifth_income_group <- sum(with(income_df,cps19_income_cat==5))
+sixth_income_group <- sum(with(income_df,cps19_income_cat==6))
+seventh_income_group <- sum(with(income_df,cps19_income_cat==7))
+eighth_income_group <- sum(with(income_df,cps19_income_cat==8))
+number_income_tot <- first_income_group + second_income_group + third_income_group + fourth_income_group + fifth_income_group + sixth_income_group + seventh_income_group + eigth_income_group
+income_group_percentages = c(100*first_income_group/number_income_tot,100*second_income_group/number_income_tot,100*third_income_group/number_income_tot,100*fourth_income_group/number_income_tot,100*fifth_income_group/number_income_tot,100*sixth_income_group/number_income_tot,100*seventh_income_group/number_income_tot,100*eigth_income_group/number_income_tot )
+
+first_income_parties = c(sum(with(income_df,cps19_income_cat==1 & cps19_fed_id==1)),sum(with(income_df,cps19_income_cat==1 & cps19_fed_id==2)),sum(with(income_df,cps19_income_cat==1 & cps19_fed_id==3)),sum(with(income_df,cps19_income_cat==1 & cps19_fed_id==4)),sum(with(income_df,cps19_income_cat==1 & cps19_fed_id==5)),sum(with(income_df,cps19_income_cat==1 & cps19_fed_id==6)))
+sum_first_income_parties = sum(first_income_parties)
+first_income_party_percentages = c(100*first_income_parties[1]/sum_first_income_parties,100*first_income_parties[2]/sum_first_income_parties,100*first_income_parties[3]/sum_first_income_parties,100*first_income_parties[4]/sum_first_income_parties,100*first_income_parties[5]/sum_first_income_parties,100*first_income_parties[6]/sum_first_income_parties)
+
+second_income_parties = c(sum(with(income_df,cps19_income_cat==2 & cps19_fed_id==1)),sum(with(income_df,cps19_income_cat==2 & cps19_fed_id==2)),sum(with(income_df,cps19_income_cat==2 & cps19_fed_id==3)),sum(with(income_df,cps19_income_cat==2 & cps19_fed_id==4)),sum(with(income_df,cps19_income_cat==2 & cps19_fed_id==5)),sum(with(income_df,cps19_income_cat==2 & cps19_fed_id==6)))
+sum_second_income_parties = sum(second_income_parties)
+second_income_party_percentages = c(100*second_income_parties[1]/sum_second_income_parties,100*second_income_parties[2]/sum_second_income_parties,100*second_income_parties[3]/sum_second_income_parties,100*second_income_parties[4]/sum_second_income_parties,100*second_income_parties[5]/sum_second_income_parties,100*second_income_parties[6]/sum_second_income_parties)
+
+third_income_parties = c(sum(with(income_df,cps19_income_cat==3 & cps19_fed_id==1)),sum(with(income_df,cps19_income_cat==3 & cps19_fed_id==2)),sum(with(income_df,cps19_income_cat==3 & cps19_fed_id==3)),sum(with(income_df,cps19_income_cat==3 & cps19_fed_id==4)),sum(with(income_df,cps19_income_cat==3 & cps19_fed_id==5)),sum(with(income_df,cps19_income_cat==3 & cps19_fed_id==6)))
+sum_third_income_parties = sum(third_income_parties)
+third_income_party_percentages = c(100*third_income_parties[1]/sum_third_income_parties,100*third_income_parties[2]/sum_third_income_parties,100*third_income_parties[3]/sum_third_income_parties,100*third_income_parties[4]/sum_third_income_parties,100*third_income_parties[5]/sum_third_income_parties,100*third_income_parties[6]/sum_third_income_parties)
+
+fourth_income_parties = c(sum(with(income_df,cps19_income_cat==4 & cps19_fed_id==1)),sum(with(income_df,cps19_income_cat==4 & cps19_fed_id==2)),sum(with(income_df,cps19_income_cat==4 & cps19_fed_id==3)),sum(with(income_df,cps19_income_cat==4 & cps19_fed_id==4)),sum(with(income_df,cps19_income_cat==4 & cps19_fed_id==5)),sum(with(income_df,cps19_income_cat==4 & cps19_fed_id==6)))
+sum_fourth_income_parties = sum(fourth_income_parties)
+fourth_income_party_percentages = c(100*fourth_income_parties[1]/sum_fourth_income_parties,100*fourth_income_parties[2]/sum_fourth_income_parties,100*fourth_income_parties[3]/sum_fourth_income_parties,100*fourth_income_parties[4]/sum_fourth_income_parties,100*fourth_income_parties[5]/sum_fourth_income_parties,100*fourth_income_parties[6]/sum_fourth_income_parties)
+
+fifth_income_parties = c(sum(with(income_df,cps19_income_cat==5 & cps19_fed_id==1)),sum(with(income_df,cps19_income_cat==5 & cps19_fed_id==2)),sum(with(income_df,cps19_income_cat==5 & cps19_fed_id==3)),sum(with(income_df,cps19_income_cat==5 & cps19_fed_id==4)),sum(with(income_df,cps19_income_cat==5 & cps19_fed_id==5)),sum(with(income_df,cps19_income_cat==5 & cps19_fed_id==6)))
+sum_fifth_income_parties = sum(fifth_income_parties)
+fifth_income_party_percentages = c(100*fifth_income_parties[1]/sum_fifth_income_parties,100*fifth_income_parties[2]/sum_fifth_income_parties,100*fifth_income_parties[3]/sum_fifth_income_parties,100*fifth_income_parties[4]/sum_fifth_income_parties,100*fifth_income_parties[5]/sum_fifth_income_parties,100*fifth_income_parties[6]/sum_fifth_income_parties)
+
+sixth_income_parties = c(sum(with(income_df,cps19_income_cat==6 & cps19_fed_id==1)),sum(with(income_df,cps19_income_cat==6 & cps19_fed_id==2)),sum(with(income_df,cps19_income_cat==6 & cps19_fed_id==3)),sum(with(income_df,cps19_income_cat==6 & cps19_fed_id==4)),sum(with(income_df,cps19_income_cat==6 & cps19_fed_id==5)),sum(with(income_df,cps19_income_cat==6 & cps19_fed_id==6)))
+sum_sixth_income_parties = sum(sixth_income_parties)
+sixth_income_party_percentages = c(100*sixth_income_parties[1]/sum_sixth_income_parties,100*sixth_income_parties[2]/sum_sixth_income_parties,100*sixth_income_parties[3]/sum_sixth_income_parties,100*sixth_income_parties[4]/sum_sixth_income_parties,100*sixth_income_parties[5]/sum_sixth_income_parties,100*sixth_income_parties[6]/sum_sixth_income_parties)
+
+seventh_income_parties = c(sum(with(income_df,cps19_income_cat==7 & cps19_fed_id==1)),sum(with(income_df,cps19_income_cat==7 & cps19_fed_id==2)),sum(with(income_df,cps19_income_cat==7 & cps19_fed_id==3)),sum(with(income_df,cps19_income_cat==7 & cps19_fed_id==4)),sum(with(income_df,cps19_income_cat==7 & cps19_fed_id==5)),sum(with(income_df,cps19_income_cat==7 & cps19_fed_id==6)))
+sum_seventh_income_parties = sum(seventh_income_parties)
+seventh_income_party_percentages = c(100*seventh_income_parties[1]/sum_seventh_income_parties,100*seventh_income_parties[2]/sum_seventh_income_parties,100*seventh_income_parties[3]/sum_seventh_income_parties,100*seventh_income_parties[4]/sum_seventh_income_parties,100*seventh_income_parties[5]/sum_seventh_income_parties,100*seventh_income_parties[6]/sum_seventh_income_parties)
+
+eighth_income_parties = c(sum(with(income_df,cps19_income_cat==8 & cps19_fed_id==1)),sum(with(income_df,cps19_income_cat==8 & cps19_fed_id==2)),sum(with(income_df,cps19_income_cat==8 & cps19_fed_id==3)),sum(with(income_df,cps19_income_cat==8 & cps19_fed_id==4)),sum(with(income_df,cps19_income_cat==8 & cps19_fed_id==5)),sum(with(income_df,cps19_income_cat==8 & cps19_fed_id==6)))
+sum_eighth_income_parties = sum(eighth_income_parties)
+eighth_income_party_percentages = c(100*eighth_income_parties[1]/sum_eighth_income_parties,100*eighth_income_parties[2]/sum_eighth_income_parties,100*eighth_income_parties[3]/sum_eighth_income_parties,100*eighth_income_parties[4]/sum_eighth_income_parties,100*eighth_income_parties[5]/sum_eighth_income_parties,100*eighth_income_parties[6]/sum_eighth_income_parties)
+
+eighth_income_party_percentages
+
+#cps19_children ,1= yes, 2= no
+children_df <- ces[,c(167,249)]
+children_df[is.na(children_df)] = 0
+number_with_children <- sum(with(ces,cps19_children==1))
+number_without_children <- sum(with(ces,cps19_children==2))
+number_children_tot = number_with_children + number_without_children
+number_with_children_percentage <- 100*number_with_children/number_children_tot
+number_without_children_percentage <- 100*number_without_children/number_children_tot
+children_parties = c(sum(with(children_df,cps19_children==1 & cps19_fed_id==1)),sum(with(children_df,cps19_children==1 & cps19_fed_id==2)),sum(with(children_df,cps19_children==1 & cps19_fed_id==3)),sum(with(children_df,cps19_children==1 & cps19_fed_id==4)),sum(with(children_df,cps19_children==1 & cps19_fed_id==5)),sum(with(children_df,cps19_children==1 & cps19_fed_id==6)))
+sum_children_parties = sum(children_parties)
+children_parties_percentage = c(100*children_parties[1]/sum_children_parties,100*children_parties[2]/sum_children_parties,100*children_parties[3]/sum_children_parties,100*children_parties[4]/sum_children_parties,100*children_parties[5]/sum_children_parties,100*children_parties[6]/sum_children_parties)
+no_children_parties = c(sum(with(children_df,cps19_children==2 & cps19_fed_id==1)),sum(with(children_df,cps19_children==2 & cps19_fed_id==2)),sum(with(children_df,cps19_children==2 & cps19_fed_id==3)),sum(with(children_df,cps19_children==2 & cps19_fed_id==4)),sum(with(children_df,cps19_children==2 & cps19_fed_id==5)),sum(with(children_df,cps19_children==2 & cps19_fed_id==6)))
+sum_no_children_parties = sum(no_children_parties)
+no_children_parties_percentage = c(100*no_children_parties[1]/sum_no_children_parties,100*no_children_parties[2]/sum_no_children_parties,100*no_children_parties[3]/sum_no_children_parties,100*no_children_parties[4]/sum_no_children_parties,100*no_children_parties[5]/sum_no_children_parties,100*no_children_parties[6]/sum_no_children_parties)
+
+
+#cps19_province
+province_df <- ces[,c(167,9)]
+province_df[is.na(province_df)] = 0
+alberta = sum(with(province_df,cps19_province==14)) 
+british_columbia = sum(with(province_df,cps19_province==15)) 
+manitoba = sum(with(province_df,cps19_province==16)) 
+new_brunswick = sum(with(province_df,cps19_province==17)) 
+newfoundland_and_labrador = sum(with(province_df,cps19_province==18)) 
+northwest_territories = sum(with(province_df,cps19_province==19)) 
+nova_scotia = sum(with(province_df,cps19_province==20)) 
+nanuvat = sum(with(province_df,cps19_province==21)) 
+ontario = sum(with(province_df,cps19_province==22)) 
+prince_edward_island = sum(with(province_df,cps19_province==23)) 
+quebec = sum(with(province_df,cps19_province==24)) 
+saskatchewan = sum(with(province_df,cps19_province==25)) 
+yukon = sum(with(province_df,cps19_province==26))
+sum_provinces = alberta + british_columbia+ manitoba+ new_brunswick+ newfoundland_and_labrador +northwest_territories+ nova_scotia +nanuvat +ontario +prince_edward_island +quebec +saskatchewan +yukon
+province_percentages = c(100*alberta/sum_provinces,100*british_columbia/sum_provinces,100*manitoba/sum_provinces,100*new_brunswick/sum_provinces,100*newfoundland_and_labrador/sum_provinces,100*northwest_territories/sum_provinces,100*nova_scotia/sum_provinces,100*nanuvat/sum_provinces,100*ontario/sum_provinces,100*prince_edward_island/sum_provinces, 100*quebec/sum_provinces, 100*saskatchewan/sum_provinces, 100*yukon/sum_provinces )
+
+alberta_parties = c(sum(with(province_df,cps19_province==14 & cps19_fed_id==1)),sum(with(province_df,cps19_province==14 & cps19_fed_id==2)),sum(with(province_df,cps19_province==14 & cps19_fed_id==3)),sum(with(province_df,cps19_province==14 & cps19_fed_id==4)),sum(with(province_df,cps19_province==14 & cps19_fed_id==5)),sum(with(province_df,cps19_province==14 & cps19_fed_id==6)))
+sum_alberta_parties = sum(alberta_parties)
+alberta_party_percentages = c(100*alberta_parties[1]/sum_alberta_parties,100*alberta_parties[2]/sum_alberta_parties,100*alberta_parties[3]/sum_alberta_parties,100*alberta_parties[4]/sum_alberta_parties,100*alberta_parties[5]/sum_alberta_parties,100*alberta_parties[6]/sum_alberta_parties)
+
+british_columbia_parties = c(sum(with(province_df,cps19_province==15 & cps19_fed_id==1)),sum(with(province_df,cps19_province==15 & cps19_fed_id==2)),sum(with(province_df,cps19_province==15 & cps19_fed_id==3)),sum(with(province_df,cps19_province==15 & cps19_fed_id==4)),sum(with(province_df,cps19_province==15 & cps19_fed_id==5)),sum(with(province_df,cps19_province==15 & cps19_fed_id==6)))
+sum_british_columbia_parties = sum(british_columbia_parties)
+british_columbia_party_percentages = c(100*british_columbia_parties[1]/sum_british_columbia_parties,100*british_columbia_parties[2]/sum_british_columbia_parties,100*british_columbia_parties[3]/sum_british_columbia_parties,100*british_columbia_parties[4]/sum_british_columbia_parties,100*british_columbia_parties[5]/sum_british_columbia_parties,100*british_columbia_parties[6]/sum_british_columbia_parties)
+
+manitoba_parties = c(sum(with(province_df,cps19_province==16 & cps19_fed_id==1)),sum(with(province_df,cps19_province==16 & cps19_fed_id==2)),sum(with(province_df,cps19_province==16 & cps19_fed_id==3)),sum(with(province_df,cps19_province==16 & cps19_fed_id==4)),sum(with(province_df,cps19_province==16 & cps19_fed_id==5)),sum(with(province_df,cps19_province==16 & cps19_fed_id==6)))
+sum_manitoba_parties = sum(manitoba_parties)
+manitoba_party_percentages = c(100*manitoba_parties[1]/sum_manitoba_parties,100*manitoba_parties[2]/sum_manitoba_parties,100*manitoba_parties[3]/sum_manitoba_parties,100*manitoba_parties[4]/sum_manitoba_parties,100*manitoba_parties[5]/sum_manitoba_parties,100*manitoba_parties[6]/sum_manitoba_parties)
+
+new_brunswick_parties = c(sum(with(province_df,cps19_province==17 & cps19_fed_id==1)),sum(with(province_df,cps19_province==17 & cps19_fed_id==2)),sum(with(province_df,cps19_province==17 & cps19_fed_id==3)),sum(with(province_df,cps19_province==17 & cps19_fed_id==4)),sum(with(province_df,cps19_province==17 & cps19_fed_id==5)),sum(with(province_df,cps19_province==17 & cps19_fed_id==6)))
+sum_new_brunswick_parties = sum(new_brunswick_parties)
+new_brunswick_party_percentages = c(100*new_brunswick_parties[1]/sum_new_brunswick_parties,100*new_brunswick_parties[2]/sum_new_brunswick_parties,100*new_brunswick_parties[3]/sum_new_brunswick_parties,100*new_brunswick_parties[4]/sum_new_brunswick_parties,100*new_brunswick_parties[5]/sum_new_brunswick_parties,100*new_brunswick_parties[6]/sum_new_brunswick_parties)
+
+newfoundland_and_labrador_parties = c(sum(with(province_df,cps19_province==18 & cps19_fed_id==1)),sum(with(province_df,cps19_province==18 & cps19_fed_id==2)),sum(with(province_df,cps19_province==18 & cps19_fed_id==3)),sum(with(province_df,cps19_province==18 & cps19_fed_id==4)),sum(with(province_df,cps19_province==18 & cps19_fed_id==5)),sum(with(province_df,cps19_province==18 & cps19_fed_id==6)))
+sum_newfoundland_and_labrador_parties = sum(newfoundland_and_labrador_parties)
+newfoundland_and_labrador_party_percentages = c(100*newfoundland_and_labrador_parties[1]/sum_newfoundland_and_labrador_parties,100*newfoundland_and_labrador_parties[2]/sum_newfoundland_and_labrador_parties,100*newfoundland_and_labrador_parties[3]/sum_newfoundland_and_labrador_parties,100*newfoundland_and_labrador_parties[4]/sum_newfoundland_and_labrador_parties,100*newfoundland_and_labrador_parties[5]/sum_newfoundland_and_labrador_parties,100*newfoundland_and_labrador_parties[6]/sum_newfoundland_and_labrador_parties)
+
+northwest_territories_parties = c(sum(with(province_df,cps19_province==19 & cps19_fed_id==1)),sum(with(province_df,cps19_province==19 & cps19_fed_id==2)),sum(with(province_df,cps19_province==19 & cps19_fed_id==3)),sum(with(province_df,cps19_province==19 & cps19_fed_id==4)),sum(with(province_df,cps19_province==19 & cps19_fed_id==5)),sum(with(province_df,cps19_province==19 & cps19_fed_id==6)))
+sum_northwest_territories_parties = sum(northwest_territories_parties)
+northwest_territories_party_percentages = c(100*northwest_territories_parties[1]/sum_northwest_territories_parties,100*northwest_territories_parties[2]/sum_northwest_territories_parties,100*northwest_territories_parties[3]/sum_northwest_territories_parties,100*northwest_territories_parties[4]/sum_northwest_territories_parties,100*northwest_territories_parties[5]/sum_northwest_territories_parties,100*northwest_territories_parties[6]/sum_northwest_territories_parties)
+
+nova_scotia_parties = c(sum(with(province_df,cps19_province==20 & cps19_fed_id==1)),sum(with(province_df,cps19_province==20 & cps19_fed_id==2)),sum(with(province_df,cps19_province==20 & cps19_fed_id==3)),sum(with(province_df,cps19_province==20 & cps19_fed_id==4)),sum(with(province_df,cps19_province==20 & cps19_fed_id==5)),sum(with(province_df,cps19_province==20 & cps19_fed_id==6)))
+sum_nova_scotia_parties = sum(nova_scotia_parties)
+nova_scotia_party_percentages = c(100*nova_scotia_parties[1]/sum_nova_scotia_parties,100*nova_scotia_parties[2]/sum_nova_scotia_parties,100*nova_scotia_parties[3]/sum_nova_scotia_parties,100*nova_scotia_parties[4]/sum_nova_scotia_parties,100*nova_scotia_parties[5]/sum_nova_scotia_parties,100*nova_scotia_parties[6]/sum_nova_scotia_parties)
+
+nanuvat_parties = c(sum(with(province_df,cps19_province==21 & cps19_fed_id==1)),sum(with(province_df,cps19_province==21 & cps19_fed_id==2)),sum(with(province_df,cps19_province==21 & cps19_fed_id==3)),sum(with(province_df,cps19_province==21 & cps19_fed_id==4)),sum(with(province_df,cps19_province==21 & cps19_fed_id==5)),sum(with(province_df,cps19_province==21 & cps19_fed_id==6)))
+sum_nanuvat_parties = sum(nanuvat_parties)
+nanuvat_party_percentages = c(100*nanuvat_parties[1]/sum_nanuvat_parties,100*nanuvat_parties[2]/sum_nanuvat_parties,100*nanuvat_parties[3]/sum_nanuvat_parties,100*nanuvat_parties[4]/sum_nanuvat_parties,100*nanuvat_parties[5]/sum_nanuvat_parties,100*nanuvat_parties[6]/sum_nanuvat_parties)
+
+ontario_parties = c(sum(with(province_df,cps19_province==22 & cps19_fed_id==1)),sum(with(province_df,cps19_province==22 & cps19_fed_id==2)),sum(with(province_df,cps19_province==22 & cps19_fed_id==3)),sum(with(province_df,cps19_province==22 & cps19_fed_id==4)),sum(with(province_df,cps19_province==22 & cps19_fed_id==5)),sum(with(province_df,cps19_province==22 & cps19_fed_id==6)))
+sum_ontario_parties = sum(ontario_parties)
+ontario_party_percentages = c(100*ontario_parties[1]/sum_ontario_parties,100*ontario_parties[2]/sum_ontario_parties,100*ontario_parties[3]/sum_ontario_parties,100*ontario_parties[4]/sum_ontario_parties,100*ontario_parties[5]/sum_ontario_parties,100*ontario_parties[6]/sum_ontario_parties)
+
+prince_edward_island_parties = c(sum(with(province_df,cps19_province==23 & cps19_fed_id==1)),sum(with(province_df,cps19_province==23 & cps19_fed_id==2)),sum(with(province_df,cps19_province==23 & cps19_fed_id==3)),sum(with(province_df,cps19_province==23 & cps19_fed_id==4)),sum(with(province_df,cps19_province==23 & cps19_fed_id==5)),sum(with(province_df,cps19_province==23 & cps19_fed_id==6)))
+sum_prince_edward_island_parties = sum(prince_edward_island_parties)
+prince_edward_island_party_percentages = c(100*prince_edward_island_parties[1]/sum_prince_edward_island_parties,100*prince_edward_island_parties[2]/sum_prince_edward_island_parties,100*prince_edward_island_parties[3]/sum_prince_edward_island_parties,100*prince_edward_island_parties[4]/sum_prince_edward_island_parties,100*prince_edward_island_parties[5]/sum_prince_edward_island_parties,100*prince_edward_island_parties[6]/sum_prince_edward_island_parties)
+
+quebec_parties = c(sum(with(province_df,cps19_province==24 & cps19_fed_id==1)),sum(with(province_df,cps19_province==24 & cps19_fed_id==2)),sum(with(province_df,cps19_province==24 & cps19_fed_id==3)),sum(with(province_df,cps19_province==24 & cps19_fed_id==4)),sum(with(province_df,cps19_province==24 & cps19_fed_id==5)),sum(with(province_df,cps19_province==24 & cps19_fed_id==6)))
+sum_quebec_parties = sum(quebec_parties)
+quebec_party_percentages = c(100*quebec_parties[1]/sum_quebec_parties,100*quebec_parties[2]/sum_quebec_parties,100*quebec_parties[3]/sum_quebec_parties,100*quebec_parties[4]/sum_quebec_parties,100*quebec_parties[5]/sum_quebec_parties,100*quebec_parties[6]/sum_quebec_parties)
+
+saskatchewan_parties = c(sum(with(province_df,cps19_province==25 & cps19_fed_id==1)),sum(with(province_df,cps19_province==25 & cps19_fed_id==2)),sum(with(province_df,cps19_province==25 & cps19_fed_id==3)),sum(with(province_df,cps19_province==25 & cps19_fed_id==4)),sum(with(province_df,cps19_province==25 & cps19_fed_id==5)),sum(with(province_df,cps19_province==25 & cps19_fed_id==6)))
+sum_saskatchewan_parties = sum(saskatchewan_parties)
+saskatchewan_party_percentages = c(100*saskatchewan_parties[1]/sum_saskatchewan_parties,100*saskatchewan_parties[2]/sum_saskatchewan_parties,100*saskatchewan_parties[3]/sum_saskatchewan_parties,100*saskatchewan_parties[4]/sum_saskatchewan_parties,100*saskatchewan_parties[5]/sum_saskatchewan_parties,100*saskatchewan_parties[6]/sum_saskatchewan_parties)
+
+yukon_parties = c(sum(with(province_df,cps19_province==26 & cps19_fed_id==1)),sum(with(province_df,cps19_province==26 & cps19_fed_id==2)),sum(with(province_df,cps19_province==26 & cps19_fed_id==3)),sum(with(province_df,cps19_province==26 & cps19_fed_id==4)),sum(with(province_df,cps19_province==26 & cps19_fed_id==5)),sum(with(province_df,cps19_province==26 & cps19_fed_id==6)))
+sum_yukon_parties = sum(yukon_parties)
+yukon_party_percentages = c(100*yukon_parties[1]/sum_yukon_parties,100*yukon_parties[2]/sum_yukon_parties,100*yukon_parties[3]/sum_yukon_parties,100*yukon_parties[4]/sum_yukon_parties,100*yukon_parties[5]/sum_yukon_parties,100*yukon_parties[6]/sum_yukon_parties)
+
+#cps19_sexuality 1 = heterosexual, 2 = homosexual
+sexuality_df <- ces[,c(167,223)]
+sexuality_df[is.na(sexuality_df)] = 0
+number_heterosexual <- sum(with(sexuality_df,cps19_sexuality==1))
+number_homosexual <- sum(with(sexuality_df,cps19_sexuality==2))
+number_sexuality_tot = number_heterosexual + number_homosexual
+number_heterosexual_percentage <- 100*number_heterosexual/number_sexuality_tot
+number_homosexual_percentage <- 100*number_homosexual/number_sexuality_tot
+
+heterosexual_parties = c(sum(with(sexuality_df,cps19_sexuality==1 & cps19_fed_id==1)),sum(with(sexuality_df,cps19_sexuality==1 & cps19_fed_id==2)),sum(with(sexuality_df,cps19_sexuality==1 & cps19_fed_id==3)),sum(with(sexuality_df,cps19_sexuality==1 & cps19_fed_id==4)),sum(with(sexuality_df,cps19_sexuality==1 & cps19_fed_id==5)),sum(with(sexuality_df,cps19_sexuality==1 & cps19_fed_id==6)))
+sum_heterosexual_parties = sum(heterosexual_parties)
+heterosexual_parties_percentage = c(100*heterosexual_parties[1]/sum_heterosexual_parties,100*heterosexual_parties[2]/sum_heterosexual_parties,100*heterosexual_parties[3]/sum_heterosexual_parties,100*heterosexual_parties[4]/sum_heterosexual_parties,100*heterosexual_parties[5]/sum_heterosexual_parties,100*heterosexual_parties[6]/sum_heterosexual_parties)
+
+homosexual_parties = c(sum(with(sexuality_df,cps19_sexuality==2 & cps19_fed_id==1)),sum(with(sexuality_df,cps19_sexuality==2 & cps19_fed_id==2)),sum(with(sexuality_df,cps19_sexuality==2 & cps19_fed_id==3)),sum(with(sexuality_df,cps19_sexuality==2 & cps19_fed_id==4)),sum(with(sexuality_df,cps19_sexuality==2 & cps19_fed_id==5)),sum(with(sexuality_df,cps19_sexuality==2 & cps19_fed_id==6)))
+sum_homosexual_parties = sum(homosexual_parties)
+homosexual_parties_percentage = c(100*homosexual_parties[1]/sum_homosexual_parties,100*homosexual_parties[2]/sum_homosexual_parties,100*homosexual_parties[3]/sum_homosexual_parties,100*homosexual_parties[4]/sum_homosexual_parties,100*homosexual_parties[5]/sum_homosexual_parties,100*homosexual_parties[6]/sum_homosexual_parties)
+
+#cps19_marital 1&2&4= married or living common law, 3/5/6 = not married
+marital_df <- ces[,c(167,258)]
+marital_df[is.na(marital_df)] = 0
+number_married <- sum(with(marital_df,cps19_marital==1)) + sum(with(marital_df,cps19_marital==2)) + sum(with(marital_df,cps19_marital==4))
+number_unmarried <- sum(with(marital_df,cps19_marital==3)) + sum(with(marital_df,cps19_marital==5)) + sum(with(marital_df,cps19_marital==6))
+number_marital_tot = number_married + number_unmarried
+number_married_percentage = 100*number_married/number_marital_tot
+number_unmarried_percentage = 100*number_unmarried/number_marital_tot
+
+married_liberal = sum(with(marital_df,cps19_marital==1 & cps19_fed_id==1))+sum(with(marital_df,cps19_marital==2 & cps19_fed_id==1))+sum(with(marital_df,cps19_marital==4 & cps19_fed_id==1))
+married_conservative = sum(with(marital_df,cps19_marital==1 & cps19_fed_id==2))+sum(with(marital_df,cps19_marital==2 & cps19_fed_id==2))+sum(with(marital_df,cps19_marital==4 & cps19_fed_id==2))
+married_ndp = sum(with(marital_df,cps19_marital==1 & cps19_fed_id==3))+sum(with(marital_df,cps19_marital==2 & cps19_fed_id==3))+sum(with(marital_df,cps19_marital==4 & cps19_fed_id==3))
+married_bq = sum(with(marital_df,cps19_marital==1 & cps19_fed_id==4))+sum(with(marital_df,cps19_marital==2 & cps19_fed_id==4))+sum(with(marital_df,cps19_marital==4 & cps19_fed_id==4))
+married_green = sum(with(marital_df,cps19_marital==1 & cps19_fed_id==5))+sum(with(marital_df,cps19_marital==2 & cps19_fed_id==5))+sum(with(marital_df,cps19_marital==4 & cps19_fed_id==5))
+married_peoples = sum(with(marital_df,cps19_marital==1 & cps19_fed_id==6))+sum(with(marital_df,cps19_marital==2 & cps19_fed_id==6))+sum(with(marital_df,cps19_marital==4 & cps19_fed_id==6))
+sum_married_parties = married_liberal+ married_conservative+ married_ndp+ married_bq+ married_green+ married_peoples
+married_party_percentages = c(100*married_liberal/sum_married_parties,100*married_conservative/sum_married_parties,100*married_ndp/sum_married_parties,100*married_bq/sum_married_parties,100*married_green/sum_married_parties,100*married_peoples/sum_married_parties)
+
+unmarried_liberal = sum(with(marital_df,cps19_marital==3 & cps19_fed_id==1))+sum(with(marital_df,cps19_marital==5 & cps19_fed_id==1))+sum(with(marital_df,cps19_marital==6 & cps19_fed_id==1))
+unmarried_conservative = sum(with(marital_df,cps19_marital==3 & cps19_fed_id==2))+sum(with(marital_df,cps19_marital==5 & cps19_fed_id==2))+sum(with(marital_df,cps19_marital==6 & cps19_fed_id==2))
+unmarried_ndp = sum(with(marital_df,cps19_marital==3 & cps19_fed_id==3))+sum(with(marital_df,cps19_marital==5 & cps19_fed_id==3))+sum(with(marital_df,cps19_marital==6 & cps19_fed_id==3))
+unmarried_bq = sum(with(marital_df,cps19_marital==3 & cps19_fed_id==4))+sum(with(marital_df,cps19_marital==5 & cps19_fed_id==4))+sum(with(marital_df,cps19_marital==6 & cps19_fed_id==4))
+unmarried_green = sum(with(marital_df,cps19_marital==3 & cps19_fed_id==5))+sum(with(marital_df,cps19_marital==5 & cps19_fed_id==5))+sum(with(marital_df,cps19_marital==6 & cps19_fed_id==5))
+unmarried_peoples = sum(with(marital_df,cps19_marital==3 & cps19_fed_id==6))+sum(with(marital_df,cps19_marital==5 & cps19_fed_id==6))+sum(with(marital_df,cps19_marital==6 & cps19_fed_id==6))
+sum_unmarried_parties = unmarried_liberal+ unmarried_conservative+ unmarried_ndp+ unmarried_bq+ unmarried_green+ unmarried_peoples
+unmarried_party_percentages = c(100*unmarried_liberal/sum_unmarried_parties,100*unmarried_conservative/sum_unmarried_parties,100*unmarried_ndp/sum_unmarried_parties,100*unmarried_bq/sum_unmarried_parties,100*unmarried_green/sum_unmarried_parties,100*unmarried_peoples/sum_unmarried_parties)
+
+#cps19_household
+household_df <- ces[,c(167,259)]
+household_df[is.na(household_df)] = 0
+one_member = sum(with(household_df,cps19_household==1))
+two_member = sum(with(household_df,cps19_household==2))
+three_member = sum(with(household_df,cps19_household==3))
+four_member = sum(with(household_df,cps19_household==4))
+five_plus_members = sum(with(household_df,cps19_household>4))
+members_tot = one_member + two_member + three_member + four_member + five_plus_members
+household_percentages = c(100*one_member/members_tot,100*two_member/members_tot,100*three_member/members_tot,100*four_member/members_tot,100*five_plus_members/members_tot)
+
+one_member_parties = c(sum(with(household_df,cps19_household==1 & cps19_fed_id==1)),sum(with(household_df,cps19_household==1 & cps19_fed_id==2)),sum(with(household_df,cps19_household==1 & cps19_fed_id==3)),sum(with(household_df,cps19_household==1 & cps19_fed_id==4)),sum(with(household_df,cps19_household==1 & cps19_fed_id==5)),sum(with(household_df,cps19_household==1 & cps19_fed_id==6)))
+sum_one_member_parties = sum(one_member_parties)
+one_member_party_percentages = c(100*one_member_parties[1]/sum_one_member_parties,100*one_member_parties[2]/sum_one_member_parties,100*one_member_parties[3]/sum_one_member_parties,100*one_member_parties[4]/sum_one_member_parties,100*one_member_parties[5]/sum_one_member_parties,100*one_member_parties[6]/sum_one_member_parties)
+
+two_members_parties = c(sum(with(household_df,cps19_household==2 & cps19_fed_id==1)),sum(with(household_df,cps19_household==2 & cps19_fed_id==2)),sum(with(household_df,cps19_household==2 & cps19_fed_id==3)),sum(with(household_df,cps19_household==2 & cps19_fed_id==4)),sum(with(household_df,cps19_household==2 & cps19_fed_id==5)),sum(with(household_df,cps19_household==2 & cps19_fed_id==6)))
+sum_two_members_parties = sum(two_members_parties)
+two_members_party_percentages = c(100*two_members_parties[1]/sum_two_members_parties,100*two_members_parties[2]/sum_two_members_parties,100*two_members_parties[3]/sum_two_members_parties,100*two_members_parties[4]/sum_two_members_parties,100*two_members_parties[5]/sum_two_members_parties,100*two_members_parties[6]/sum_two_members_parties)
+
+three_members_parties = c(sum(with(household_df,cps19_household==3 & cps19_fed_id==1)),sum(with(household_df,cps19_household==3 & cps19_fed_id==2)),sum(with(household_df,cps19_household==3 & cps19_fed_id==3)),sum(with(household_df,cps19_household==3 & cps19_fed_id==4)),sum(with(household_df,cps19_household==3 & cps19_fed_id==5)),sum(with(household_df,cps19_household==3 & cps19_fed_id==6)))
+sum_three_members_parties = sum(three_members_parties)
+three_members_party_percentages = c(100*three_members_parties[1]/sum_three_members_parties,100*three_members_parties[2]/sum_three_members_parties,100*three_members_parties[3]/sum_three_members_parties,100*three_members_parties[4]/sum_three_members_parties,100*three_members_parties[5]/sum_three_members_parties,100*three_members_parties[6]/sum_three_members_parties)
+
+four_members_parties = c(sum(with(household_df,cps19_household==4 & cps19_fed_id==1)),sum(with(household_df,cps19_household==4 & cps19_fed_id==2)),sum(with(household_df,cps19_household==4 & cps19_fed_id==3)),sum(with(household_df,cps19_household==4 & cps19_fed_id==4)),sum(with(household_df,cps19_household==4 & cps19_fed_id==5)),sum(with(household_df,cps19_household==4 & cps19_fed_id==6)))
+sum_four_members_parties = sum(four_members_parties)
+four_members_party_percentages = c(100*four_members_parties[1]/sum_four_members_parties,100*four_members_parties[2]/sum_four_members_parties,100*four_members_parties[3]/sum_four_members_parties,100*four_members_parties[4]/sum_four_members_parties,100*four_members_parties[5]/sum_four_members_parties,100*four_members_parties[6]/sum_four_members_parties)
+
+five_members_parties = c(sum(with(household_df,cps19_household==5 & cps19_fed_id==1)),sum(with(household_df,cps19_household==5 & cps19_fed_id==2)),sum(with(household_df,cps19_household==5 & cps19_fed_id==3)),sum(with(household_df,cps19_household==5 & cps19_fed_id==4)),sum(with(household_df,cps19_household==5 & cps19_fed_id==5)),sum(with(household_df,cps19_household==5 & cps19_fed_id==6)))
+sum_five_members_parties = sum(five_members_parties)
+five_members_party_percentages = c(100*five_members_parties[1]/sum_five_members_parties,100*five_members_parties[2]/sum_five_members_parties,100*five_members_parties[3]/sum_five_members_parties,100*five_members_parties[4]/sum_five_members_parties,100*five_members_parties[5]/sum_five_members_parties,100*five_members_parties[6]/sum_five_members_parties)
+
+#cps19_bornin_canada, yes=1, no=2
+bornin_canada_df <- ces[,c(167,197)]
+bornin_canada_df[is.na(bornin_canada_df)] = 0
+bornin_canada = sum(with(bornin_canada_df,cps19_bornin_canada==1))
+not_bornin_canada = sum(with(bornin_canada_df,cps19_bornin_canada==2))
+births_tot <- bornin_canada+ not_bornin_canada
+bornin_canada_percentage <- 100*bornin_canada/births_tot
+not_bornin_canada_percentage <- 100*not_bornin_canada/births_tot
+bornin_canada_parties = c(sum(with(bornin_canada_df,cps19_bornin_canada==1 & cps19_fed_id==1)),sum(with(bornin_canada_df,cps19_bornin_canada==1 & cps19_fed_id==2)),sum(with(bornin_canada_df,cps19_bornin_canada==1 & cps19_fed_id==3)),sum(with(bornin_canada_df,cps19_bornin_canada==1 & cps19_fed_id==4)),sum(with(bornin_canada_df,cps19_bornin_canada==1 & cps19_fed_id==5)),sum(with(bornin_canada_df,cps19_bornin_canada==1 & cps19_fed_id==6)))
+sum_bornin_canada_parties = sum(bornin_canada_parties)
+bornin_canada_parties_percentage = c(100*bornin_canada_parties[1]/sum_bornin_canada_parties,100*bornin_canada_parties[2]/sum_bornin_canada_parties,100*bornin_canada_parties[3]/sum_bornin_canada_parties,100*bornin_canada_parties[4]/sum_bornin_canada_parties,100*bornin_canada_parties[5]/sum_bornin_canada_parties,100*bornin_canada_parties[6]/sum_bornin_canada_parties)
+not_bornin_canada_parties = c(sum(with(bornin_canada_df,cps19_bornin_canada==2 & cps19_fed_id==1)),sum(with(bornin_canada_df,cps19_bornin_canada==2 & cps19_fed_id==2)),sum(with(bornin_canada_df,cps19_bornin_canada==2 & cps19_fed_id==3)),sum(with(bornin_canada_df,cps19_bornin_canada==2 & cps19_fed_id==4)),sum(with(bornin_canada_df,cps19_bornin_canada==2 & cps19_fed_id==5)),sum(with(bornin_canada_df,cps19_bornin_canada==2 & cps19_fed_id==6)))
+sum_not_bornin_canada_parties = sum(not_bornin_canada_parties)
+not_bornin_canada_parties_percentage = c(100*not_bornin_canada_parties[1]/sum_not_bornin_canada_parties,100*not_bornin_canada_parties[2]/sum_not_bornin_canada_parties,100*not_bornin_canada_parties[3]/sum_not_bornin_canada_parties,100*not_bornin_canada_parties[4]/sum_not_bornin_canada_parties,100*not_bornin_canada_parties[5]/sum_not_bornin_canada_parties,100*not_bornin_canada_parties[6]/sum_not_bornin_canada_parties)
+
+#cps19_gender, 1= man, 2= female
+gender_df <- ces[,c("cps19_fed_id", "cps19_gender")]
+gender_df[is.na(gender_df)] = 0
+males = sum(with(gender_df,cps19_gender==1))
+females = sum(with(gender_df,cps19_gender==2))
+genders_tot = males+females
+males_percentage = 100*males/genders_tot
+females_percentage = 100*females/genders_tot
+male_parties = c(sum(with(gender_df,cps19_gender==1 & cps19_fed_id==1)),sum(with(gender_df,cps19_gender==1 & cps19_fed_id==2)),sum(with(gender_df,cps19_gender==1 & cps19_fed_id==3)),sum(with(gender_df,cps19_gender==1 & cps19_fed_id==4)),sum(with(gender_df,cps19_gender==1 & cps19_fed_id==5)),sum(with(gender_df,cps19_gender==1 & cps19_fed_id==6)))
+sum_male_parties = sum(male_parties)
+male_parties_percentage = c(100*male_parties[1]/sum_male_parties,100*male_parties[2]/sum_male_parties,100*male_parties[3]/sum_male_parties,100*male_parties[4]/sum_male_parties,100*male_parties[5]/sum_male_parties,100*male_parties[6]/sum_male_parties)
+female_parties = c(sum(with(gender_df,cps19_gender==2 & cps19_fed_id==1)),sum(with(gender_df,cps19_gender==2 & cps19_fed_id==2)),sum(with(gender_df,cps19_gender==2 & cps19_fed_id==3)),sum(with(gender_df,cps19_gender==2 & cps19_fed_id==4)),sum(with(gender_df,cps19_gender==2 & cps19_fed_id==5)),sum(with(gender_df,cps19_gender==2 & cps19_fed_id==6)))
+sum_female_parties = sum(female_parties)
+female_parties_percentage = c(100*female_parties[1]/sum_female_parties,100*female_parties[2]/sum_female_parties,100*female_parties[3]/sum_female_parties,100*female_parties[4]/sum_female_parties,100*female_parties[5]/sum_female_parties,100*female_parties[6]/sum_female_parties)

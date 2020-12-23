@@ -1,0 +1,164 @@
+﻿---
+title: ""
+output: html_document
+---
+**(Option b) Measuring the differences after making the votes compulsory in 2019.**
+
+**Introduction:**With a relatively low voter turnout rate of 66% in the 2019 Canadian federal election, the question naturally begged is: what change in the results, if any, would there have been if the election was compulsory? It is not merely an academic question, given the existence of just such a system in 21 countries and the fact that, according to a recent survey, 60% of Canadians believe that voting in the federal election should be made mandatory (Mario Canseco, 2019) . The political will necessary to make this change, however, will largely depend on whether a majority of legislators believe such a move will be in their own political best interest. By carefully analyzing the effect that mandatory voting will have on the most recent general election, this paper will provide the framework by which politicians and the general public might evaluate the usefulness of such a system and, by extension, their support for it.
+
+The fundamental rationale behind why compulsory voting measures should cause a significant difference in results to those achieved from a relatively low voter turnout is that the subset of eligible voters who actually vote is not likely to be highly representative of that population as a whole. Instead, there is a decent likelihood of a non-negligible covariance between political affiliation and likelihood to vote. 
+
+To be able to make statistically significant inferences, it is necessary to have recent, reliable, and exhaustive data for the demographics of eligible Canadian voters as well as large sample data on the voting behaviour of key demographic subgroups from which to extrapolate to the same subgroups of the entire population. The former is provided by the 2016 Canadian Census (Statistics Canada, 2016) which had an excellent response rate of 98.4%, and the latter by the 2019 Canadian Election Study (CES) (Daniel Rubenson et al., 2019) which employed a sound methodology and had a healthy sample size of 37,822.  
+
+In the methodology section, the CES dataset will be described more fully, including its characteristics. The method of analysis using an MRP model will be justified, and the precise manner in which it is to be employed to incorporate the CES and CS datasets shall also be expounded upon. The results section will contain all pertinent results obtained from the analysis; presented concisely and including graphical representations when appropriate. Finally, the discussion section will summarize the analysis conducted earlier in the paper as well as draw conclusions and inferences from the results obtained by the analysis and explain their relevance to the central question of the paper- providing an answer to the extent available. The section will conclude with a discussion of the limitations of this analysis and its margin of error, as well as suggesting what next steps could be taken to strengthen the confidence of the statistical inferences that this analysis can provide in answering this paper’s focal question.
+
+**Methodology:**
+
+An MRP model is used to estimate what the 2019 general election results would have been, had voting been compulsory. Before justifying this choice of analysis, it should be noted that this theoretical mandate carries with it a level of ambiguity as the penalties for non-compliance vary from nation to nation in strictness, and even in such states, voter-participation is never 100% but usually around the 90% mark. Nevertheless, for the sake of dispensing with unnecessary complexity, it shall be assumed that compulsory voting does indeed result in a 100% voter-participation rate. The MRP model is appropriate, then, because both the target population (all eligible voters as accounted for in the Census) and the sample population(those in the CES dataset) can be stratified according to the model’s predictive variables. The percentage of those in the sample belonging to any given subset of any given model variable is not likely to be the same as the percentage of all eligible voters belonging to the same subset. The MRP model is designed to account for these known differences in sample and population distributions by applying a weighted average of estimates to achieve an accurate prediction for the target population, given the known results of the sample group.  
+
+A key methodological choice confronted with in this analysis is which variables ought to be used to stratify the eligible voting population in order to conduct the strongest possible analysis. Firstly, we note that each variable used must be accounted for in both the CES and CS datasets and must be recorded comparably (for an example of incomparable data types of the exact same underlying data, consider the same question: “Which political ideology do you identify closest with?” and two different sets of answers: “anarchist or communist” and “liberal or conservative”). Secondly, we note that, as both datasets are very extensive, more such variables exist than ought to be included in our MRP model. The reason for excluding the most inconsequential variables is to “avoid asking too much of the data'' by reducing excess unnecessary noise that would detract from the confidence of the model’s signal. Additionally, it makes interpreting and presenting conclusions simpler and would prove helpful in reducing computational complexity which increases non-linearly and can therefore become unfeasible quickly (Andrew Gelman et al., 2018). The number of variables should be no more than 12, and ideally closer to eight. The fact that the results of the model using these variables is a prediction of an event that never occurred (near-100% voter turnout in the 2019 election), it is unlikely to be useful to re-run the model on a different variable set and use the results to judge which set is more predictive. The choice of exactly which variables to include is then one which must be based on plausible rationale and a level of subjective intuition of human nature and behaviour. The variables chosen to be used in the MRP model are given below (all of which are categorical), along with the pertinent data, presented in the form of a table, for each variable. In the first column of each table are the categories that the value of the variable can assume. In the “CES” column are the percentages of respondents for each category in the CES dataset and in the “Population” column is the percentage of adult Canadian citizens belonging to each category, as per the 2016 Census. There are columns for each political party that won seats in the House of Commons, with each’s cells populated by the percent of CES responders belonging to that row’s category. 
+
+```{r bars}
+x <- c(58.56, 37.937315, 36.852091, 12.142369,  6.238142,  5.114973,  1.715110,51.32, 41.34, 39.631929, 28.416401 ,18.146221 , 5.107121 , 7.215976 , 1.482352,48.68)
+rown <- c("male","female")
+coln <-c("CES","Liberal","Conservative","New Democratic","Bloc Quebecois", "Green","Peoples","Population")
+table<- matrix(x,nrow=2,ncol=8,byrow=TRUE, dimnames = list(rown, coln))
+
+library(knitr)
+kable(table, caption="Gender")
+
+
+x2 <- c(2.27,  38.064516, 18.709677, 16.774194,  5.161290, 17.419355,  3.870968,3.22,20.61,   33.542102 ,23.660404, 22.059847,  6.819763, 11.064718,  2.853166 ,22.81, 27.31, 39.354839, 28.535980, 18.461538,  4.764268 , 7.047146,  1.836228,23.47,20.87, 37.323037, 34.620335 ,16.151866 , 4.311454  ,5.662806 , 1.930502,21.39,11.05,41.2114014 ,34.3230404 ,13.1828979 , 3.4441805,  7.1258907 , 0.7125891,10.01,9.77,  40.540541, 34.054054, 12.972973,  4.459459 , 6.891892,  1.081081,10.27,4.92,  43.3673469, 35.4591837, 14.5408163 , 1.2755102 , 4.5918367,  0.7653061, 4.53, 3.2, 40.234375, 42.578125 , 7.812500,  2.734375 , 4.687500,  1.953125, 4.3)
+
+rown2 <- c("No Income",  "$1 to $30,000" , "$30,001 to $60,000", "$60,001 to $90,000", "$90,001 to $110,000", "$110,001 to $150,000", "$150,001 to $200,000", "More than $200,001"  )
+coln2 <-c("CES","Liberal","Conservative","New Democratic","Bloc Quebecois", "Green","Peoples","Population")
+table2<- matrix(x2,nrow=8,ncol=8,byrow=TRUE, dimnames = list(rown2, coln2))
+
+kable(table2, caption="Income Level")
+
+x3 <- c(16.08, 37.540614, 31.703681, 16.314361 , 6.452353 , 6.433240 , 1.555751, 1.63, 17.55, 83.92, 45.827524 ,33.140809 ,12.567218,  1.035650 , 5.795658 , 1.633141,82.45)
+rown3 <- c("Immigrant","Non-Immigrant")
+coln3 <-c("CES","Liberal","Conservative","New Democratic","Bloc Quebecois", "Green","Peoples","Population")
+table3<- matrix(x3,nrow=2,ncol=8,byrow=TRUE, dimnames = list(rown3, coln3))
+
+kable(table3, caption="Immigration status")
+
+x4 <- c(11.85 ,21.222546, 60.862662, 12.304843 , 0.000000 , 3.572374 , 2.037576 , 11.57, 11.51, 35.91803, 30.37940, 21.12988,  0.00000 ,10.99418 , 1.57851,13.22,4.47, 33.1914894, 40.9929078 ,18.2269504 , 0.0000000,  6.7375887,  0.8510638 ,3.64,2.27,  47.662142 ,26.847662 , 9.653092 , 0.000000, 12.669683,  3.167421,2.13,1.67, 54.320988 ,21.193416 ,20.164609,  0.000000,  2.880658 , 1.440329 , 1.48,0.07,   52.380952, 14.285714, 23.809524 , 0.000000 , 4.761905 , 4.761905, 0.12,2.65,   51.625488, 24.447334 ,15.604681 , 0.000000 , 6.631990 , 1.690507 , 2.63,0.07,    59.090909, 31.818182,  4.545455 , 0.000000,  4.545455 , 0.000000 ,0.1,39.15, 43.817117 ,31.451350, 17.084282 , 0.000000 , 6.052717 , 1.594533 , 38.26,0.44, 48.760331 ,22.314050 , 8.264463 , 0.000000, 20.661157 , 0.000000 ,0.41,22.21,    41.669044 ,15.206847 ,11.312411, 24.878745 , 5.649073 , 1.283880 ,23.23,3.54,   19.850885, 52.283318 ,22.273998 , 0.000000 , 4.007456,  1.584343,3.12,0.1, 42.424242, 30.303030, 18.181818,  0.000000 , 6.060606,  3.030303,0.1)
+rown4 <- c("Alberta","British Columbia", "Manitoba", "New Brunswick","Newfoundland and Labrador", "Northwest Territories","Northwest Territories", "Nova Scotia","Nanuvat","Ontario","Prince Edward Island","Quebec","Saskatchewan")
+coln4 <-c("CES","Liberal","Conservative","New Democratic","Bloc Quebecois", "Green","Peoples","Population")
+table4<- matrix(x4,nrow=13,ncol=8,byrow=TRUE, dimnames = list(rown4, coln4))
+
+kable(table4, caption="Province")
+
+x5 <- c(66.24 ,38.241398, 35.365089, 13.995464 , 5.467883,  5.352058 , 1.578109, 62.75, 33.76, 40.170605, 25.159329, 19.070497 , 5.892735 , 8.216492,  1.490342, 37.25 )
+rown5 <- c("Married or living common-law","Neither married nor living common-law")
+coln5 <-c("CES", "Liberal","Conservative","New Democratic","Bloc Quebecois", "Green","Peoples","Population")
+table5<- matrix(x5,nrow=2,ncol=8,byrow=TRUE, dimnames = list(rown5, coln5))
+
+kable(table5, caption="Immigration status")
+
+x6 <- c(60.47, 38.241398, 35.365089 ,13.995464 , 5.467883,  5.352058  ,1.578109, 60.32, 39.53, 40.170605 ,25.159329, 19.070497 , 5.892735,  8.216492 , 1.490342, 39.68)
+rown6 <- c("Have one or more children","No children")
+coln6 <-c("CES", "Liberal","Conservative","New Democratic","Bloc Quebecois", "Green","Peoples","Population")
+table6<- matrix(x6,nrow=2,ncol=8,byrow=TRUE, dimnames = list(rown6, coln6))
+
+kable(table6, caption="Parental status")
+
+x7 <- c(95.42, 37.937315, 36.852091, 12.142369,  6.238142,  5.114973  ,1.715110 ,98.4 ,4.78, 39.631929, 28.416401, 18.146221 , 5.107121 , 7.215976 , 1.482352, 1.6)
+rown7 <- c("Heterosexual","Homosexual")
+coln7 <-c("CES", "Liberal","Conservative","New Democratic","Bloc Quebecois", "Green","Peoples","Population")
+table7<- matrix(x7,nrow=2,ncol=8,byrow=TRUE, dimnames = list(rown7, coln7))
+
+kable(table7, caption="Sexual preference")
+
+x8 <- c(19.44, 39.154831, 26.529897 ,17.289146,  7.732772  ,7.487287 , 1.806067 ,11.42 ,40.92, 38.971419, 33.634749, 14.314549 , 6.418537 , 5.562732 , 1.098014, 27.81, 17.39, 38.362483, 32.385162 ,16.855660 , 3.997694 , 6.669229 , 1.729771, 18.47, 14.28 ,39.442607, 33.278224, 15.658951,  3.944261,  6.046292,  1.629665 ,22.39, 7.97, 40.076094, 32.847178 ,15.789474,  3.487635 , 6.277743 , 1.521877, 21.01)
+rown8 <- c("1 household member","2 household members","3 household members","4 household members","5+ household members")
+coln8 <-c("CES", "Liberal","Conservative","New Democratic","Bloc Quebecois", "Green","Peoples","Population")
+table8<- matrix(x8,nrow=5,ncol=8,byrow=TRUE, dimnames = list(rown8, coln8))
+
+kable(table8, caption="Household size")
+
+```
+Like all multilevel models, certain key assumptions are to be made, namely:
+
+1) Linearity with respect to the regressors.
+2) Normality of error terms (with a mean of zero) for every level of the model.
+3) Homogeneity of variances between the sample group (CES responders) and population (Adult Census responders) for all variables.
+4) The residuals of any two levels are uncorrelated.
+
+**Results**
+
+The MRP model that is used to estimate voting percentages for each of the six parties that won seats in the House of Commons is as follows:
+
+$$ (1) a_i = b_0 + b_1 * x_{gender[i]}+ b_2 * x_{income level[i]}+ b_3 * x_{immigrant status[i]}+ b_4 * {x_province[i]}+
+  b_5 * x_{marital status[i]}+ b_6 * x_{parental status[i]}+ b_7 * x_{sexual preference[i]} +b_8 * x_{household size[i]} + e.$$
+a_i is the estimated percentage of votes for party i (if voting had been mandatory) and x_{variable[i]} is the percentage of votes for party i of CES participants striated using that variable and weighted according to the general population. The coefficients b_0 ,b_1 ,....,b_8 are used to assign importance to the variable it precedes in estimating . Therefore, for example, if gender was of more value than province in the prediction of , b_1 ought to be larger than b_4. Of course, since each variable is correlated positively with , each b_i must be positive. Because there is no exit poll of sufficient size -as there is in the US- it is not possible to use ex-facto modelling (as was done by the Statistics department of Columbia University in predicting the US election using an XBox poll) to estimate the values of each b_i (Wei Wang, 2014). This lack of knowledge of the demographics of actual voters makes us unable to model the coefficients to most closely match the actual election results and then extrapolate that model to full voter-participation. However, it is still possible to invalidate the coefficients should the unlikely event occur that fewer votes for any party is expected than actually occurred. In the absence of a useful measure to assign different weights to the coefficients, it shall be assumed that b_{i}= 0 and b_{i}=1/8 for every i in {1,2,...8}.  
+
+The voting results using each variable alone, if voting was compulsory, is given in the table below:
+
+```{r second}
+y <- c(38.81,32.52,15.22,5.66,6.19,1.6,38.08,30.47,17.01,4.74,7.78,1.92,38.99,31.96,15.66,5.5,6.32,1.57,39.02,31.45,15.74,5.78,6.45,1.58,38.96,31.56,15.89,5.63,6.42,1.55,38.92,31.85,15.74,5.58,6.35,1.57,38.97,33.52,14.58,5.79,5.68,1.46,39.65,32.72,15.89,5.02,6.31,1.52)
+rowny <- c("Gender","Income Level","Immigration status","province","Marital status", "Parental status","Sexual preference","Household size")
+colny <-c("Liberal","Conservative","New Democratic","Bloc Quebecois", "Green","Peoples")
+tabley<- matrix(y,nrow=8,ncol=6,byrow=TRUE, dimnames = list(rowny, colny))
+
+library(knitr)
+kable(tabley, caption="")
+```
+
+Applying equation (1) to the values in the table above, the estimated vote totals for each party, assuming voting was mandatory, is given in the table below. In the second row are the actual voting results that occurred in the election, and in the third is the difference between actual votes and the theoretical estimation.
+
+```{r third}
+y2 <- c(38.92,32.01,15.71,5.46,6.44,1.59,33.12,34.34,15.98,7.63,6.55,1.62,-5.8,2.33,0.27,2.17,0.11,0.03)
+
+rowny2 <- c("Estimated","Actual", "Difference"  )
+colny2 <-c("Liberal","Conservative","New Democratic","Bloc Quebecois", "Green","Peoples")
+tabley2<- matrix(y2,nrow=3,ncol=6,byrow=TRUE, dimnames = list(rowny2, colny2))
+
+kable(tabley2, caption="")
+```
+
+According to this analysis, the only major party that would benefit from a mandatory voting law is the Liberal party, getting a higher percentage of the votes at the expense of every other major party. The NDP, Greens party and Peoples party would incur minor absolute losses, partly attributed to their small vote-allocation regardless- particularly in the case of the latter two. The party that would lose the largest percentage of votes is the Conservative party. 
+
+One very important trend sticks out when analysing the Liberal and Conservative voting percentages implied by the CES dataset and, taken in conjunction, cause significant doubt in the validity and methodology of the CES study as a whole. This trend is that Liberal party favour is consistently significantly higher than actual turnout in every category of every variable except in just 3 provinces. Meanwhile, the Conservative party is favoured less than in the actual voting turnout in every category of every variable except for married individuals, parents, in 3 provinces, the 2 highest income groups and males. Many of these are predictable, given that world-wide, conservatives tend to have more children, get married more often and do so earlier, skew to males, and the conservative party offers lower taxes than many of its rivals-attracting support of high-income people. These two trends suggest, along with a multitude of further evidence to be listed later, that the CES dataset fails to some degree the necessary condition of all sample surveys: to sample randomly. To clarify: their intention wasn’t for entirely random applicant selection, choosing to select roughly equal males as females and sample from provinces in a population-weighted manner. However, these results suggest that even within those restrictions, their sampling wasn’t effectively random, skewing instead more ideologically liberal and representing too few ideological conservatives. 
+
+The reason this criticism is likely, is that this exact phenomenon has been observed in multiple countries over multiple election cycles. Perhaps the most notable example of this occurred in the 2020 US election, where state election polls were extraordinarily inaccurate, almost exclusively over-estimating Democrat support and under-estimating Republican support. In many cases, poll averages reflected this inaccuracy to the margin of being off by multiples of their reported error margin and in multiple states by over 8%. This was dubbed the “shy Trump voter effect”. Because Trump is a fairly unique candidate, one shouldn’t extrapolate this effect in totality to other elections, however it would be even more unwise to consider it an aberration. To use two other recent examples from the UK, Brexit polls reflected the same liberal-conservative skew, as did the 2019 General election to an even greater degree. Furthermore, this phenomenon isn’t just statistical fact, there is good reason to explain why polls in Western countries consistently overestimate liberal voters and underestimate conservative voters. The reason stems from concern by conservatives that the results of their responses in polls may not remain confidential and anonymous but instead be made public by it being shared or hacked. They perceive that in an increasingly PC environment where doxxing and “cancel-culture” has become more common-place, having their responses shared may result in them facing career and/or social repercussions. This fear makes conservatives less likely and willing to answer either at all or honestly polls. This fear appears to be less common among liberals and hence, polls-like CES-over-sample liberals and under-sample conservatives. Therefore, given the relatively high prevalence of Liberal Party voters in the CES dataset (relative to their share of actual voters) and the opposite for  Conservative Party voters, we cannot rule out the high likelihood that this non-random sampling invalidates the results of the analysis. This is even more likely, given the low difference in voter results observed, that this small change is heavily dictated by this sampling error. To be sure, a relatively small difference in actual and estimated results were to be expected even with truly random sampling.
+
+Discussion
+
+To evaluate what the results of the 2019 Canadian federal election would have been, had voting been made mandatory and assuming 100% voter-turnout, we used an MRP model. To do so, the CES dataset that was taken shortly before the election and which included demographic details of its responders in addition to the party they would vote for, was used as the sample set. As the demographic profile of the CES responders did not reflect that of the entire eligible voting base, that was provided by the 2016 Census. A linear regression of equal coefficient weights was used on the 8 demographic predictors to arrive at the estimate.
+
+The difference in results given by the aforementioned model suggested that, were the election made mandatory, the Liberal vote share would have improved by 5.8% of the total, while all other parties would have lost ground: chief among which being the Conservative party with a 2.33% vote reduction. 
+
+If the analysis and the data on which it is based are sound, it would suggest that, at least in the near-term, it would be in the political interest of the ruling Liberal Party to pass a mandatory voting law. However, it would be in the interest of every other party with seats in the Canadian House of Commons to vote to reject the passing of a mandatory voting law. Given the fact that the Liberal Party currently only holds a minority of seats in the House of Commons, the likelihood of passing this law would be negligible.
+
+The CES dataset appears to unfortunately- at least as it pertains to this analysis- be too untrustworthy in terms of the randomness of it’s sample, to make any confident conclusions. The overperformance of the Liberal Party and underperformance of the Conservative Party seems likely to result from the oversampling of liberals and undersampling of conservatives in the CES itself, not the true data itself. The confirmed prevalence of this exact phenomenon appears present in many recent polls across the West, even though the problem is known and pollsters claim to be accounting for it.
+
+There are two weaknesses in this analysis. The first, as mentioned above, stems from the veracity of the CES dataset itself. It could be possible to alleviate some of this effect if there was census data on ideological affiliation that was answered honestly. This information exists within the CES dataset, but as it doesn’t exist for the population as a whole, it is impossible to weight the CES figure. Alternatively, the CES body could alter its methodology to help remove the sampling bias from occurring in the first place. This appears no easy task, given the failure by almost every well-financed pollsters to achieve this even when aware of this exact issue and intentionally trying to account for it. It may be helped by convincing prospective respondents of more robust anonymity protections.
+
+The weakness of the analysis itself, assuming reliable data, occurs in not finding a canonical weighting of the coefficients. One way this may be attempted is by giving greater weight to variables that have greater variance between predicted and actual vote percentages, increasing with standard deviation and decreasing with sample size of categories. 
+
+
+Bibliography:
+
+https://www.vancouverisawesome.com/politics/mandatory-voting-federal-elections-canada-1946103
+
+https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/DUS88V
+
+https://www12.statcan.gc.ca/census-recensement/2016/dp-pd/index-eng.cfm
+
+http://www.stat.columbia.edu/~gelman/research/unpublished/MRT(1).pdf
+
+https://en.wikipedia.org/wiki/Compulsory_voting
+https://www.microsoft.com/en-us/research/wp-content/uploads/2016/04/forecasting-with-nonrepresentative-polls.pdf
+
+https://www.bloomberg.com/news/articles/2020-11-19/-shy-trump-voters-re-emerge-as-explanation-for-pollsters-miss
+
+https://www.theguardian.com/commentisfree/2019/nov/12/polls-2019-election
+
+https://en.wikipedia.org/wiki/2019_Canadian_federal_election
+
+https://www12.statcan.gc.ca/census-recensement/2016/dp-pd/dt-td/Index-eng.cfm?TABID=2&LANG=E&A=R&APATH=7&DETAIL=0&DIM=0&FL=A&FREE=0&GC=0&GL=-1&GID=0&GK=0&GRP=1&O=D&PID=0&PRID=10&PTYPE=109445&S=0&SHOWALL=0&SUB=0&Temporal=2016&THEME=0&VID=0&VNAMEE=&VNAMEF=&D1=0&D2=0&D3=0&D4=0&D5=0&D6=0
+
+
+
